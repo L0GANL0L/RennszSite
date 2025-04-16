@@ -1,26 +1,34 @@
 import { Card, CardContent, CardFooter, CardHeader } from "@/components/ui/card";
 import { SOCIAL_LINKS } from "@/lib/constants";
-import { ExternalLink, Play, Users, Clock, ChevronRight } from "lucide-react";
+import { ExternalLink, Play, Users, Clock, ChevronRight, Calendar } from "lucide-react";
 import { SiTwitch } from "react-icons/si";
 import { FaGamepad } from "react-icons/fa";
 import streamerImage from "../assets/IMG_2456.png";
 import streamerSecondImage from "../assets/IMG_2458.jpeg";
 import { Badge } from "@/components/ui/badge";
+import { useEffect, useState } from "react";
+import { getStreamStatus, formatViewerCount, formatScheduledTime, StreamInfo } from "@/lib/streamStatus";
 
 export default function FeaturedStreams() {
-  // Real stats for the streams
-  const streamStats = {
-    irl: {
-      viewers: "4.8K",
-      uptime: "1h 45m",
-      category: "IRL Outdoor"
-    },
-    gaming: {
-      viewers: "3.2K",
-      uptime: "2h 20m", 
-      category: "Call of Duty"
-    }
-  };
+  const [irlStreamInfo, setIrlStreamInfo] = useState<StreamInfo>({ status: 'offline' });
+  const [gamingStreamInfo, setGamingStreamInfo] = useState<StreamInfo>({ status: 'offline' });
+  
+  // Update stream status every minute
+  useEffect(() => {
+    const updateStreamStatus = () => {
+      setIrlStreamInfo(getStreamStatus(SOCIAL_LINKS.TWITCH_MAIN));
+      setGamingStreamInfo(getStreamStatus(SOCIAL_LINKS.TWITCH_GAMING));
+    };
+    
+    // Initial update
+    updateStreamStatus();
+    
+    // Set interval to update every minute
+    const interval = setInterval(updateStreamStatus, 60000);
+    
+    // Clean up on unmount
+    return () => clearInterval(interval);
+  }, []);
 
   return (
     <section id="streams" className="py-20 bg-gradient-to-b from-[#0E0E10] to-[#18181B] border-b border-gray-800">
@@ -51,23 +59,43 @@ export default function FeaturedStreams() {
                     style={{ backgroundImage: `url(${streamerImage})` }}
                   >
                     <div className="w-full h-full bg-gradient-to-t from-[#0E0E10] via-[#0E0E10]/60 to-transparent flex flex-col justify-end p-8">
-                      <div className="absolute top-6 left-6 bg-gradient-to-r from-red-500 to-pink-500 text-white px-4 py-2 rounded-full font-bold flex items-center shadow-lg">
-                        <span className="w-3 h-3 bg-white rounded-full mr-2 animate-pulse"></span>
-                        LIVE
-                      </div>
+                      {/* Stream status badge */}
+                      {irlStreamInfo.status === 'live' ? (
+                        <div className="absolute top-6 left-6 bg-gradient-to-r from-red-500 to-pink-500 text-white px-4 py-2 rounded-full font-bold flex items-center shadow-lg">
+                          <span className="w-3 h-3 bg-white rounded-full mr-2 animate-pulse"></span>
+                          LIVE
+                        </div>
+                      ) : irlStreamInfo.status === 'scheduled' && irlStreamInfo.scheduledFor ? (
+                        <div className="absolute top-6 left-6 bg-gradient-to-r from-blue-500 to-indigo-500 text-white px-4 py-2 rounded-full font-bold flex items-center shadow-lg">
+                          <Calendar className="h-4 w-4 mr-2" />
+                          {formatScheduledTime(irlStreamInfo.scheduledFor)}
+                        </div>
+                      ) : (
+                        <div className="absolute top-6 left-6 bg-gradient-to-r from-gray-600 to-gray-700 text-white px-4 py-2 rounded-full font-bold flex items-center shadow-lg">
+                          <span className="w-3 h-3 bg-gray-400 rounded-full mr-2"></span>
+                          OFFLINE
+                        </div>
+                      )}
                       
                       <div className="flex items-center mb-4 space-x-2">
-                        <Badge className="bg-[#9146FF] hover:bg-[#9146FF] text-white">{streamStats.irl.category}</Badge>
-                        <div className="flex items-center text-gray-400 text-sm space-x-4">
-                          <div className="flex items-center">
-                            <Users className="h-4 w-4 mr-1 text-gray-300" />
-                            <span className="text-white font-medium">{streamStats.irl.viewers}</span>
+                        <Badge className="bg-[#9146FF] hover:bg-[#9146FF] text-white">
+                          {irlStreamInfo.category || 'IRL Outdoor'}
+                        </Badge>
+                        
+                        {irlStreamInfo.status === 'live' && (
+                          <div className="flex items-center text-gray-400 text-sm space-x-4">
+                            <div className="flex items-center">
+                              <Users className="h-4 w-4 mr-1 text-gray-300" />
+                              <span className="text-white font-medium">
+                                {irlStreamInfo.viewerCount ? formatViewerCount(irlStreamInfo.viewerCount) : '0'}
+                              </span>
+                            </div>
+                            <div className="flex items-center">
+                              <Clock className="h-4 w-4 mr-1 text-gray-300" />
+                              <span>{irlStreamInfo.duration || '0h 0m'}</span>
+                            </div>
                           </div>
-                          <div className="flex items-center">
-                            <Clock className="h-4 w-4 mr-1 text-gray-300" />
-                            <span>{streamStats.irl.uptime}</span>
-                          </div>
-                        </div>
+                        )}
                       </div>
                       
                       <h3 className="text-2xl font-bold text-white mb-2">Rennsz IRL</h3>
@@ -123,23 +151,43 @@ export default function FeaturedStreams() {
                     style={{ backgroundImage: `url(${streamerSecondImage})` }}
                   >
                     <div className="w-full h-full bg-gradient-to-t from-[#0E0E10] via-[#0E0E10]/60 to-transparent flex flex-col justify-end p-8">
-                      <div className="absolute top-6 left-6 bg-gradient-to-r from-green-500 to-teal-500 text-white px-4 py-2 rounded-full font-bold flex items-center shadow-lg">
-                        <span className="w-3 h-3 bg-white rounded-full mr-2 animate-pulse"></span>
-                        LIVE
-                      </div>
+                      {/* Stream status badge */}
+                      {gamingStreamInfo.status === 'live' ? (
+                        <div className="absolute top-6 left-6 bg-gradient-to-r from-green-500 to-teal-500 text-white px-4 py-2 rounded-full font-bold flex items-center shadow-lg">
+                          <span className="w-3 h-3 bg-white rounded-full mr-2 animate-pulse"></span>
+                          LIVE
+                        </div>
+                      ) : gamingStreamInfo.status === 'scheduled' && gamingStreamInfo.scheduledFor ? (
+                        <div className="absolute top-6 left-6 bg-gradient-to-r from-blue-500 to-indigo-500 text-white px-4 py-2 rounded-full font-bold flex items-center shadow-lg">
+                          <Calendar className="h-4 w-4 mr-2" />
+                          {formatScheduledTime(gamingStreamInfo.scheduledFor)}
+                        </div>
+                      ) : (
+                        <div className="absolute top-6 left-6 bg-gradient-to-r from-gray-600 to-gray-700 text-white px-4 py-2 rounded-full font-bold flex items-center shadow-lg">
+                          <span className="w-3 h-3 bg-gray-400 rounded-full mr-2"></span>
+                          OFFLINE
+                        </div>
+                      )}
                       
                       <div className="flex items-center mb-4 space-x-2">
-                        <Badge className="bg-[#6441A4] hover:bg-[#6441A4] text-white">{streamStats.gaming.category}</Badge>
-                        <div className="flex items-center text-gray-400 text-sm space-x-4">
-                          <div className="flex items-center">
-                            <Users className="h-4 w-4 mr-1 text-gray-300" />
-                            <span className="text-white font-medium">{streamStats.gaming.viewers}</span>
+                        <Badge className="bg-[#6441A4] hover:bg-[#6441A4] text-white">
+                          {gamingStreamInfo.category || 'Call of Duty'}
+                        </Badge>
+                        
+                        {gamingStreamInfo.status === 'live' && (
+                          <div className="flex items-center text-gray-400 text-sm space-x-4">
+                            <div className="flex items-center">
+                              <Users className="h-4 w-4 mr-1 text-gray-300" />
+                              <span className="text-white font-medium">
+                                {gamingStreamInfo.viewerCount ? formatViewerCount(gamingStreamInfo.viewerCount) : '0'}
+                              </span>
+                            </div>
+                            <div className="flex items-center">
+                              <Clock className="h-4 w-4 mr-1 text-gray-300" />
+                              <span>{gamingStreamInfo.duration || '0h 0m'}</span>
+                            </div>
                           </div>
-                          <div className="flex items-center">
-                            <Clock className="h-4 w-4 mr-1 text-gray-300" />
-                            <span>{streamStats.gaming.uptime}</span>
-                          </div>
-                        </div>
+                        )}
                       </div>
                       
                       <h3 className="text-2xl font-bold text-white mb-2">Rennszino Gaming</h3>
