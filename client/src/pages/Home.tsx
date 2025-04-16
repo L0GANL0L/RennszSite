@@ -34,14 +34,14 @@ export default function Home() {
   }, []);
 
   return (
-    <div className="min-h-screen bg-background text-foreground flex flex-col">
+    <div className="min-h-screen bg-[#0E0E10] text-foreground flex flex-col">
       <Header />
       <Hero />
       <FeaturedStreams />
       <SocialLinks />
       <Footer />
       
-      <style jsx global>{`
+      <style global>{`
         .nav-link {
           position: relative;
           transition: color 0.3s ease;
