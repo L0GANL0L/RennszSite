@@ -41,7 +41,7 @@ export default function Home() {
       <SocialLinks />
       <Footer />
       
-      <style global>{`
+      <style>{`
         .nav-link {
           position: relative;
           transition: color 0.3s ease;
