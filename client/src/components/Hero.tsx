@@ -64,7 +64,7 @@ export default function Hero() {
                 <div className="w-10 h-10 rounded-full bg-blue-500 flex items-center justify-center text-white text-xs font-bold">KL</div>
                 <div className="w-10 h-10 rounded-full bg-green-500 flex items-center justify-center text-white text-xs font-bold">JW</div>
               </div>
-              <p className="text-gray-400">Joined by <span className="text-white font-semibold">47</span> viewers</p>
+              <p className="text-gray-400">Joined by <span className="text-white font-semibold">10K+</span> viewers</p>
             </div>
           </div>
           
