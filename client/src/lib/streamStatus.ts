@@ -105,12 +105,12 @@ export function getStreamStatus(channelUrl: string): StreamInfo {
     
     // Generate a realistic viewer count based on time of day and day of week
     // Weekend streams get more viewers
-    const baseViewers = channelUrl === SOCIAL_LINKS.TWITCH_MAIN ? 4800 : 3200;
+    const baseViewers = channelUrl === SOCIAL_LINKS.TWITCH_MAIN ? 42 : 28;
     const timeMultiplier = 1 + (currentHour - todaySchedule.start) * 0.1;
     const weekendBonus = [0, 6].includes(currentDay) ? 1.3 : 1;
     const randomFactor = 0.8 + Math.random() * 0.4; // Random factor between 0.8 and 1.2
     
-    const viewerCount = Math.floor(baseViewers * timeMultiplier * weekendBonus * randomFactor / 1000) * 1000;
+    const viewerCount = Math.floor(baseViewers * timeMultiplier * weekendBonus * randomFactor);
     
     return {
       status: 'live',
