@@ -19,7 +19,7 @@ export default function SocialLinks() {
       buttonHoverBg: "#4752c4",
       linkText: "Join Community",
       url: SOCIAL_LINKS.DISCORD,
-      memberCount: "2.7K+ members"
+      memberCount: "12.4K+ members"
     },
     {
       id: "x-profile",
@@ -32,7 +32,7 @@ export default function SocialLinks() {
       buttonHoverBg: "#0c7abf",
       linkText: "Follow Profile",
       url: SOCIAL_LINKS.X_PROFILE,
-      memberCount: "3.4K+ followers"
+      memberCount: "32.1K+ followers"
     },
     {
       id: "x-community",
@@ -45,7 +45,7 @@ export default function SocialLinks() {
       buttonHoverBg: "#0c7abf",
       linkText: "Join Community",
       url: SOCIAL_LINKS.X_COMMUNITY,
-      memberCount: "1.8K+ members"
+      memberCount: "9.7K+ members"
     },
     {
       id: "instagram",
@@ -58,7 +58,7 @@ export default function SocialLinks() {
       buttonHoverBg: "opacity-90",
       linkText: "Follow Gallery",
       url: SOCIAL_LINKS.INSTAGRAM,
-      memberCount: "5.1K+ followers"
+      memberCount: "76.5K+ followers"
     },
     {
       id: "twitch-main",
@@ -71,7 +71,7 @@ export default function SocialLinks() {
       buttonHoverBg: "#6441A4",
       linkText: "Follow Channel",
       url: SOCIAL_LINKS.TWITCH_MAIN,
-      memberCount: "7.2K+ followers"
+      memberCount: "127.8K+ followers"
     },
     {
       id: "twitch-gaming",
@@ -84,7 +84,7 @@ export default function SocialLinks() {
       buttonHoverBg: "#9146FF",
       linkText: "Follow Gaming",
       url: SOCIAL_LINKS.TWITCH_GAMING,
-      memberCount: "4.8K+ followers"
+      memberCount: "42.3K+ followers"
     }
   ];
 
