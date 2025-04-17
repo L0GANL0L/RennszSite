@@ -15,18 +15,25 @@ export default function AnnouncementBanner() {
       }
     };
 
+    // Check date immediately
     checkDate();
-    const interval = setInterval(checkDate, 1000 * 60 * 60);
 
+    // Check localStorage for dismissed state
     const bannerDismissed = localStorage.getItem('announcementBannerDismissed');
     if (bannerDismissed === 'true') {
       setIsVisible(false);
     }
 
-    return () => {
-      clearInterval(interval);
-    };
+    // Set up interval for date checking
+    const interval = setInterval(checkDate, 1000 * 60 * 60);
+
+    return () => clearInterval(interval);
   }, []);
+
+  const handleDismiss = () => {
+    localStorage.setItem('announcementBannerDismissed', 'true');
+    setIsVisible(false);
+  };
 
   if (!shouldShow || !isVisible) {
     return null;

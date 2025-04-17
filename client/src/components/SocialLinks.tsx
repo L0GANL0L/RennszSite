@@ -82,6 +82,19 @@ export default function SocialLinks() {
       linkText: "Follow Gaming",
       url: SOCIAL_LINKS.TWITCH_GAMING,
       memberCount: "Follow Now"
+    },
+    {
+      id: "tiktok",
+      title: "TikTok Content",
+      description: "Experience Rennsz's viral moments and exclusive behind-the-scenes content on TikTok.",
+      icon: <SiTiktok className="text-2xl" />,
+      iconBg: "#000000",
+      gradient: "from-[#000000] to-[#00f2ea]",
+      buttonBg: "#000000",
+      buttonHoverBg: "#00f2ea",
+      linkText: "Follow TikTok",
+      url: "https://www.tiktok.com/@rennsztok",
+      memberCount: "Join Now"
     }
   ];
 
