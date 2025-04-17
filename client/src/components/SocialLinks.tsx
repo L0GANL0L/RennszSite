@@ -128,11 +128,7 @@ export default function SocialLinks() {
                     </div>
                     <div>
                       <h3 className="text-xl font-bold text-white mb-1">{card.title}</h3>
-                      <Badge 
-                        className="bg-[#18181B] hover:bg-[#18181B] text-gray-300 font-normal"
-                      >
-                        {card.memberCount}
-                      </Badge>
+                      <span className="text-gray-300 font-normal">{card.memberCount}</span>
                     </div>
                   </div>
                   

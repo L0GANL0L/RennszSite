@@ -61,7 +61,7 @@ export default function FeaturedStreams() {
                         <div className="flex items-center text-gray-400 text-sm space-x-4">
                           <div className="flex items-center">
                             <Users className="h-4 w-4 mr-1 text-gray-300" />
-                            <span className="text-white font-medium">{streamStats.irl.viewers}</span>
+                            <span className="text-gray-300">{streamStats.irl.viewers}</span>
                           </div>
                           <div className="flex items-center">
                             <Clock className="h-4 w-4 mr-1 text-gray-300" />
@@ -130,7 +130,7 @@ export default function FeaturedStreams() {
                         <div className="flex items-center text-gray-400 text-sm space-x-4">
                           <div className="flex items-center">
                             <Users className="h-4 w-4 mr-1 text-gray-300" />
-                            <span className="text-white font-medium">{streamStats.gaming.viewers}</span>
+                            <span className="text-gray-300">{streamStats.gaming.viewers}</span>
                           </div>
                           <div className="flex items-center">
                             <Clock className="h-4 w-4 mr-1 text-gray-300" />
