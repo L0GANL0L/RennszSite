@@ -1,3 +1,4 @@
+
 import React, { useState, useEffect } from 'react';
 import { X } from 'lucide-react';
 
@@ -38,7 +39,7 @@ export default function AnnouncementBanner() {
           <div className="flex items-center">
             <div className="mr-2 h-3 w-3 bg-white rounded-full animate-pulse"></div>
             <p className="font-medium text-sm md:text-base">
-              <span className="font-bold">STREAM COMING SOON:</span> STATE TO STATE BIKING TRIP MINNEAPOLIS TO WISCONSIN
+              <span className="font-bold">STREAM COMING SOON:</span> STATE TO STATE BIKING TRIP LIVE SOON
             </p>
           </div>
           <button 
