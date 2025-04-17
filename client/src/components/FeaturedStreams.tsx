@@ -18,7 +18,7 @@ export default function FeaturedStreams() {
     gaming: {
       viewers: "3.2K",
       uptime: "2h 20m", 
-      category: "Call of Duty"
+      category: "Fortnite"
     }
   };
 
@@ -51,10 +51,6 @@ export default function FeaturedStreams() {
                     style={{ backgroundImage: `url(${streamerImage})` }}
                   >
                     <div className="w-full h-full bg-gradient-to-t from-[#0E0E10] via-[#0E0E10]/60 to-transparent flex flex-col justify-end p-8">
-                      <div className="absolute top-6 left-6 bg-gradient-to-r from-red-500 to-pink-500 text-white px-4 py-2 rounded-full font-bold flex items-center shadow-lg">
-                        <span className="w-3 h-3 bg-white rounded-full mr-2 animate-pulse"></span>
-                        LIVE
-                      </div>
                       
                       <div className="flex items-center mb-4 space-x-2">
                         <Badge className="bg-[#9146FF] hover:bg-[#9146FF] text-white">{streamStats.irl.category}</Badge>
