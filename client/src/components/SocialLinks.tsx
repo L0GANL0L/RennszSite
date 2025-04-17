@@ -55,7 +55,7 @@ export default function SocialLinks() {
       buttonHoverBg: "opacity-90",
       linkText: "Follow Gallery",
       url: SOCIAL_LINKS.INSTAGRAM,
-      memberCount: "5.1K+ followers"
+      memberCount: "Join Now"
     },
     {
       id: "twitch-main",
@@ -68,7 +68,7 @@ export default function SocialLinks() {
       buttonHoverBg: "#6441A4",
       linkText: "Follow Channel",
       url: SOCIAL_LINKS.TWITCH_MAIN,
-      memberCount: "7.2K+ followers"
+      memberCount: "Follow Now"
     },
     {
       id: "twitch-gaming",
@@ -81,7 +81,7 @@ export default function SocialLinks() {
       buttonHoverBg: "#9146FF",
       linkText: "Follow Gaming",
       url: SOCIAL_LINKS.TWITCH_GAMING,
-      memberCount: "4.8K+ followers"
+      memberCount: "Follow Now"
     }
   ];
 
