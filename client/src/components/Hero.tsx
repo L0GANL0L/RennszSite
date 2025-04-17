@@ -30,7 +30,7 @@ export default function Hero() {
       <div className="container mx-auto px-4 relative z-10">
         <div className="flex flex-col lg:flex-row items-center justify-between gap-10">
           {/* Content */}
-          <div className="lg:w-1/2 text-left lg:pr-8">
+          <div className="w-full lg:w-1/2 text-left px-4 lg:pr-8">
             <h1 className="text-5xl md:text-7xl font-bold mb-6 leading-tight">
               <span className="bg-gradient-to-r from-[#9146FF] via-[#00FFFF] to-[#FF54C9] text-transparent bg-clip-text">
                 Rennsz

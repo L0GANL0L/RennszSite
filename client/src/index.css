@@ -1,3 +1,19 @@
+
+/* Base mobile-first styles */
+html {
+  touch-action: manipulation;
+  -webkit-text-size-adjust: 100%;
+}
+
+body {
+  @apply antialiased overflow-x-hidden min-h-screen;
+}
+
+/* Fix for iOS Safari 100vh issue */
+.min-h-screen {
+  min-height: -webkit-fill-available;
+}
+
 @tailwind base;
 @tailwind components;
 @tailwind utilities;

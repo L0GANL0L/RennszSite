@@ -95,7 +95,7 @@ export default function AnnouncementBanner() {
             </h2>
           </div>
           
-          <div className="grid grid-cols-3 gap-8 mt-12">
+          <div className="grid grid-cols-1 sm:grid-cols-3 gap-4 sm:gap-8 mt-8 sm:mt-12 px-4 sm:px-0">
             <button 
               onClick={() => updateAttendance('confirmed')}
               className={`rounded-2xl p-6 transition-all ${
