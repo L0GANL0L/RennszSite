@@ -6,9 +6,9 @@ export default function AnnouncementBanner() {
   const [isVisible, setIsVisible] = useState(true);
   const [shouldShow, setShouldShow] = useState(true);
   const [attendanceStats, setAttendanceStats] = useState({
-    confirmed: 124,
-    maybe: 56,
-    cantMake: 23
+    confirmed: 0,
+    maybe: 0,
+    cantMake: 0
   });
   
   useEffect(() => {
