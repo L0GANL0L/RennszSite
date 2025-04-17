@@ -147,8 +147,8 @@ function getStreamStatus() {
   );
   
   // Calculate realistic viewer counts
-  const baseMainViewers = 150;
-  const baseGamingViewers = 125;
+  const baseMainViewers = 200;
+  const baseGamingViewers = 175;
   
   // Factors affecting viewership
   const timeOfDayFactor = getTimeOfDayFactor(hour);

@@ -11,12 +11,12 @@ export default function FeaturedStreams() {
   // Real stats for the streams
   const streamStats = {
     irl: {
-      viewers: "4.8K",
+      viewers: "246",
       uptime: "1h 45m",
       category: "IRL Outdoor"
     },
     gaming: {
-      viewers: "3.2K",
+      viewers: "182",
       uptime: "2h 20m", 
       category: "Fortnite"
     }
