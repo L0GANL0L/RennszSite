@@ -18,8 +18,7 @@ export default function SocialLinks() {
       buttonBg: "#5865F2",
       buttonHoverBg: "#4752c4",
       linkText: "Join Community",
-      url: SOCIAL_LINKS.DISCORD,
-      memberCount: "2.7K+ members"
+      url: SOCIAL_LINKS.DISCORD
     },
     {
       id: "x-profile",
@@ -31,8 +30,7 @@ export default function SocialLinks() {
       buttonBg: "#1D9BF0",
       buttonHoverBg: "#0c7abf",
       linkText: "Follow Profile",
-      url: SOCIAL_LINKS.X_PROFILE,
-      memberCount: "3.4K+ followers"
+      url: SOCIAL_LINKS.X_PROFILE
     },
     {
       id: "x-community",
@@ -44,8 +42,7 @@ export default function SocialLinks() {
       buttonBg: "#1D9BF0",
       buttonHoverBg: "#0c7abf",
       linkText: "Join Community",
-      url: SOCIAL_LINKS.X_COMMUNITY,
-      memberCount: "1.8K+ members"
+      url: SOCIAL_LINKS.X_COMMUNITY
     },
     {
       id: "instagram",

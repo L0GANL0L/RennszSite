@@ -35,26 +35,21 @@ export interface SocialStats {
 const baseStats: SocialStats = {
   twitch: {
     mainChannel: {
-      followers: 1287,
       isLive: false,
       lastUpdated: new Date()
     },
     gamingChannel: {
-      followers: 752,
       isLive: false,
       lastUpdated: new Date()
     }
   },
   twitter: {
-    followers: 613,
     lastUpdated: new Date()
   },
   instagram: {
-    followers: 924,
     lastUpdated: new Date()
   },
   discord: {
-    members: 358,
     lastUpdated: new Date()
   }
 };
