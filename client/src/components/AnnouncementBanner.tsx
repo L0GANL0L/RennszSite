@@ -16,11 +16,21 @@ export default function AnnouncementBanner() {
   useEffect(() => {
     // Check if banner should be shown (until end of April 2025)
     const expiryDate = new Date('2025-04-30T23:59:59');
-    const now = new Date();
     
-    if (now > expiryDate) {
-      setShouldShow(false);
-    }
+    const checkDate = () => {
+      const now = new Date();
+      if (now > expiryDate) {
+        setShouldShow(false);
+      }
+    };
+
+    // Check immediately
+    checkDate();
+    
+    // Check every hour
+    const interval = setInterval(checkDate, 1000 * 60 * 60);
+    
+    return () => clearInterval(interval);
     
     // Check if user has dismissed it before
     const bannerDismissed = localStorage.getItem('announcementBannerDismissed');
