@@ -12,7 +12,6 @@ export default function AnnouncementBanner() {
   });
   
   useEffect(() => {
-    // Check if banner should be shown (until end of April 2025)
     const expiryDate = new Date('2025-04-30T23:59:59');
     
     const checkDate = () => {
@@ -30,7 +29,6 @@ export default function AnnouncementBanner() {
       setIsVisible(false);
     }
 
-    // Load saved stats
     const savedStats = localStorage.getItem('attendanceStats');
     if (savedStats) {
       setAttendanceStats(JSON.parse(savedStats));
@@ -46,18 +44,15 @@ export default function AnnouncementBanner() {
 
   const updateAttendance = (type) => {
     const newStats = { ...attendanceStats };
-    
-    // Remove one from previous selection if exists
     const userPreviousChoice = localStorage.getItem('userAttendanceChoice');
+    
     if (userPreviousChoice && userPreviousChoice !== type) {
       newStats[userPreviousChoice] = Math.max(0, newStats[userPreviousChoice] - 1);
     }
     
-    // Add one to new selection
     if (userPreviousChoice !== type) {
       newStats[type] = newStats[type] + 1;
     } else {
-      // If clicking same choice, remove selection
       newStats[type] = Math.max(0, newStats[type] - 1);
       localStorage.removeItem('userAttendanceChoice');
       setAttendanceStats(newStats);
@@ -77,76 +72,89 @@ export default function AnnouncementBanner() {
   const userChoice = localStorage.getItem('userAttendanceChoice');
   
   return (
-    <div className="fixed inset-0 z-50 flex items-center justify-center bg-black/95">
-      <div className="w-full max-w-4xl p-8 text-center">
-        <button 
-          onClick={dismissBanner} 
-          className="absolute top-4 right-4 text-white hover:text-gray-200 focus:outline-none"
-          aria-label="Dismiss announcement"
-        >
-          <X className="h-8 w-8" />
-        </button>
-        
-        <div className="space-y-8">
-          <div className="flex items-center justify-center">
-            <div className="h-4 w-4 bg-white rounded-full animate-pulse mr-4"></div>
-            <h2 className="text-4xl font-bold text-white">
-              STATE TO STATE BIKING STREAM SOON
-            </h2>
-          </div>
-          
-          <div className="grid grid-cols-1 sm:grid-cols-3 gap-4 sm:gap-8 mt-8 sm:mt-12 px-4 sm:px-0">
+    <div className="fixed inset-0 z-[9999] bg-black backdrop-blur-xl">
+      <div className="absolute inset-0 bg-gradient-to-br from-[#0E0E10]/90 to-[#18181B]/90">
+        <div className="container mx-auto h-full flex items-center justify-center px-4">
+          <div className="w-full max-w-4xl">
             <button 
-              onClick={() => updateAttendance('confirmed')}
-              className={`rounded-2xl p-6 transition-all ${
-                userChoice === 'confirmed' 
-                  ? 'bg-green-500/40 ring-2 ring-green-400' 
-                  : 'bg-green-500/20 hover:bg-green-500/30'
-              }`}
+              onClick={dismissBanner} 
+              className="absolute top-6 right-6 text-white/60 hover:text-white/90 transition-colors focus:outline-none"
+              aria-label="Dismiss announcement"
             >
-              <div className="text-5xl font-bold text-green-400 mb-2">
-                {attendanceStats.confirmed}
-              </div>
-              <div className="text-xl text-green-200">Going</div>
+              <X className="h-8 w-8" />
             </button>
             
-            <button 
-              onClick={() => updateAttendance('maybe')}
-              className={`rounded-2xl p-6 transition-all ${
-                userChoice === 'maybe' 
-                  ? 'bg-yellow-500/40 ring-2 ring-yellow-400' 
-                  : 'bg-yellow-500/20 hover:bg-yellow-500/30'
-              }`}
-            >
-              <div className="text-5xl font-bold text-yellow-400 mb-2">
-                {attendanceStats.maybe}
+            <div className="space-y-12 text-center">
+              <div className="space-y-6">
+                <div className="inline-flex items-center gap-4 bg-white/5 rounded-full px-6 py-2">
+                  <div className="h-3 w-3 bg-[#9146FF] rounded-full animate-pulse"></div>
+                  <span className="text-white/90 font-medium">Live Event Stats</span>
+                </div>
+                <h2 className="text-5xl font-bold text-transparent bg-clip-text bg-gradient-to-r from-[#9146FF] via-[#00FFFF] to-[#FF54C9]">
+                  State to State Biking Stream
+                </h2>
               </div>
-              <div className="text-xl text-yellow-200">Maybe</div>
-            </button>
-            
-            <button 
-              onClick={() => updateAttendance('cantMake')}
-              className={`rounded-2xl p-6 transition-all ${
-                userChoice === 'cantMake' 
-                  ? 'bg-red-500/40 ring-2 ring-red-400' 
-                  : 'bg-red-500/20 hover:bg-red-500/30'
-              }`}
-            >
-              <div className="text-5xl font-bold text-red-400 mb-2">
-                {attendanceStats.cantMake}
+              
+              <div className="grid grid-cols-1 sm:grid-cols-3 gap-6">
+                <button 
+                  onClick={() => updateAttendance('confirmed')}
+                  className={`group relative overflow-hidden rounded-2xl p-8 transition-all duration-300 ${
+                    userChoice === 'confirmed' 
+                      ? 'bg-gradient-to-br from-green-500/20 to-green-500/5 ring-2 ring-green-400/30' 
+                      : 'bg-white/5 hover:bg-white/10'
+                  }`}
+                >
+                  <div className="relative z-10">
+                    <div className="text-6xl font-bold text-green-400 mb-3">
+                      {attendanceStats.confirmed}
+                    </div>
+                    <div className="text-xl text-green-200">Attending</div>
+                  </div>
+                  <div className="absolute inset-0 bg-gradient-to-br from-green-500/10 to-transparent opacity-0 group-hover:opacity-100 transition-opacity"></div>
+                </button>
+                
+                <button 
+                  onClick={() => updateAttendance('maybe')}
+                  className={`group relative overflow-hidden rounded-2xl p-8 transition-all duration-300 ${
+                    userChoice === 'maybe' 
+                      ? 'bg-gradient-to-br from-yellow-500/20 to-yellow-500/5 ring-2 ring-yellow-400/30' 
+                      : 'bg-white/5 hover:bg-white/10'
+                  }`}
+                >
+                  <div className="relative z-10">
+                    <div className="text-6xl font-bold text-yellow-400 mb-3">
+                      {attendanceStats.maybe}
+                    </div>
+                    <div className="text-xl text-yellow-200">Interested</div>
+                  </div>
+                  <div className="absolute inset-0 bg-gradient-to-br from-yellow-500/10 to-transparent opacity-0 group-hover:opacity-100 transition-opacity"></div>
+                </button>
+                
+                <button 
+                  onClick={() => updateAttendance('cantMake')}
+                  className={`group relative overflow-hidden rounded-2xl p-8 transition-all duration-300 ${
+                    userChoice === 'cantMake' 
+                      ? 'bg-gradient-to-br from-red-500/20 to-red-500/5 ring-2 ring-red-400/30' 
+                      : 'bg-white/5 hover:bg-white/10'
+                  }`}
+                >
+                  <div className="relative z-10">
+                    <div className="text-6xl font-bold text-red-400 mb-3">
+                      {attendanceStats.cantMake}
+                    </div>
+                    <div className="text-xl text-red-200">Can't Make It</div>
+                  </div>
+                  <div className="absolute inset-0 bg-gradient-to-br from-red-500/10 to-transparent opacity-0 group-hover:opacity-100 transition-opacity"></div>
+                </button>
               </div>
-              <div className="text-xl text-red-200">Can't Make It</div>
-            </button>
+              
+              {userChoice && (
+                <p className="text-sm text-white/60">
+                  Click your choice again to remove your RSVP
+                </p>
+              )}
+            </div>
           </div>
-          
-          <p className="text-xl text-gray-300 mt-8">
-            Join us for an epic biking adventure across state lines!
-            {userChoice && (
-              <span className="block mt-2 text-sm text-gray-400">
-                Click your choice again to remove your RSVP
-              </span>
-            )}
-          </p>
         </div>
       </div>
     </div>
