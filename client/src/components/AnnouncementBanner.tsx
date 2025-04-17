@@ -24,22 +24,17 @@ export default function AnnouncementBanner() {
       }
     };
 
-    // Check immediately
     checkDate();
-    
-    // Check every hour
     const interval = setInterval(checkDate, 1000 * 60 * 60);
     
-    return () => clearInterval(interval);
-    
-    // Check if user has dismissed it before
     const bannerDismissed = localStorage.getItem('announcementBannerDismissed');
     if (bannerDismissed === 'true') {
       setIsVisible(false);
     }
+    
+    return () => clearInterval(interval);
   }, []);
   
-  // Hide banner when dismissed
   const dismissBanner = () => {
     setIsVisible(false);
     localStorage.setItem('announcementBannerDismissed', 'true');
@@ -50,35 +45,50 @@ export default function AnnouncementBanner() {
   }
   
   return (
-    <div className="fixed top-0 left-0 right-0 z-50 w-full transform transition-all duration-300">
-      <div className="bg-gradient-to-r from-purple-600 via-indigo-600 to-purple-700 text-white px-4 py-3">
-        <div className="container mx-auto flex items-center justify-between">
-          <div className="flex items-center space-x-6">
-            <div className="flex items-center">
-              <div className="mr-2 h-3 w-3 bg-white rounded-full animate-pulse"></div>
-              <p className="font-medium text-sm md:text-base">
-                <span className="font-bold">STATE TO STATE BIKING STREAM SOON</span>
-              </p>
+    <div className="fixed inset-0 z-50 flex items-center justify-center bg-black/95">
+      <div className="w-full max-w-4xl p-8 text-center">
+        <button 
+          onClick={dismissBanner} 
+          className="absolute top-4 right-4 text-white hover:text-gray-200 focus:outline-none"
+          aria-label="Dismiss announcement"
+        >
+          <X className="h-8 w-8" />
+        </button>
+        
+        <div className="space-y-8">
+          <div className="flex items-center justify-center">
+            <div className="h-4 w-4 bg-white rounded-full animate-pulse mr-4"></div>
+            <h2 className="text-4xl font-bold text-white">
+              STATE TO STATE BIKING STREAM SOON
+            </h2>
+          </div>
+          
+          <div className="grid grid-cols-3 gap-8 mt-12">
+            <div className="bg-green-500/20 rounded-2xl p-6">
+              <div className="text-5xl font-bold text-green-400 mb-2">
+                {attendanceStats.confirmed}
+              </div>
+              <div className="text-xl text-green-200">Going</div>
             </div>
-            <div className="hidden md:flex items-center space-x-4 text-sm">
-              <span className="px-2 py-1 bg-green-500/20 rounded">
-                {attendanceStats.confirmed} Going
-              </span>
-              <span className="px-2 py-1 bg-yellow-500/20 rounded">
-                {attendanceStats.maybe} Maybe
-              </span>
-              <span className="px-2 py-1 bg-red-500/20 rounded">
-                {attendanceStats.cantMake} Can't Make It
-              </span>
+            
+            <div className="bg-yellow-500/20 rounded-2xl p-6">
+              <div className="text-5xl font-bold text-yellow-400 mb-2">
+                {attendanceStats.maybe}
+              </div>
+              <div className="text-xl text-yellow-200">Maybe</div>
+            </div>
+            
+            <div className="bg-red-500/20 rounded-2xl p-6">
+              <div className="text-5xl font-bold text-red-400 mb-2">
+                {attendanceStats.cantMake}
+              </div>
+              <div className="text-xl text-red-200">Can't Make It</div>
             </div>
           </div>
-          <button 
-            onClick={dismissBanner} 
-            className="text-white hover:text-gray-200 focus:outline-none"
-            aria-label="Dismiss announcement"
-          >
-            <X className="h-5 w-5" />
-          </button>
+          
+          <p className="text-xl text-gray-300 mt-8">
+            Join us for an epic biking adventure across state lines!
+          </p>
         </div>
       </div>
     </div>
