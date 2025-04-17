@@ -84,11 +84,7 @@ export default function Hero() {
               <div className="absolute -top-5 -right-5 w-24 h-24 bg-gradient-to-tr from-[#9146FF] to-[#00FFFF] rounded-full opacity-30 blur-md"></div>
               <div className="absolute -bottom-4 -left-4 w-32 h-32 bg-gradient-to-tr from-[#00FFFF] to-[#FF54C9] rounded-full opacity-30 blur-md"></div>
               
-              {/* Live badge */}
-              <div className="absolute top-6 left-6 bg-gradient-to-r from-red-500 to-pink-500 text-white px-4 py-2 rounded-full font-bold flex items-center shadow-lg">
-                <span className="w-3 h-3 bg-white rounded-full mr-2 animate-pulse"></span>
-                LIVE
-              </div>
+              
             </div>
           </div>
         </div>

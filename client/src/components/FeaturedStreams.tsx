@@ -123,10 +123,7 @@ export default function FeaturedStreams() {
                     style={{ backgroundImage: `url(${streamerSecondImage})` }}
                   >
                     <div className="w-full h-full bg-gradient-to-t from-[#0E0E10] via-[#0E0E10]/60 to-transparent flex flex-col justify-end p-8">
-                      <div className="absolute top-6 left-6 bg-gradient-to-r from-green-500 to-teal-500 text-white px-4 py-2 rounded-full font-bold flex items-center shadow-lg">
-                        <span className="w-3 h-3 bg-white rounded-full mr-2 animate-pulse"></span>
-                        LIVE
-                      </div>
+                      
                       
                       <div className="flex items-center mb-4 space-x-2">
                         <Badge className="bg-[#6441A4] hover:bg-[#6441A4] text-white">{streamStats.gaming.category}</Badge>
